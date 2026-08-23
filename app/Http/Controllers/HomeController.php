@@ -8,7 +8,10 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        return view('home.index');
+        $viewData = [];
+        $viewData['title'] = 'Home - Online Store';
+
+        return view('home.index')->with('viewData', $viewData);
     }
 
     public function about(): View
@@ -27,6 +30,10 @@ class HomeController extends Controller
         $viewData = [];
         $viewData['title'] = 'Contact - Online Store';
         $viewData['subtitle'] = 'Contact Page';
+        $viewData['name'] = 'Oriana Renteria';
+        $viewData['email'] = 'infostore@example.com';
+        $viewData['phone'] = '+1 (123) 456-7890';
+        $viewData['address'] = '123 Main Street, City, Country';
 
         return view('home.contact')->with('viewData', $viewData);
     }

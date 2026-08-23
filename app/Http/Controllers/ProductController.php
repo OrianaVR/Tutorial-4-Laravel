@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -13,7 +13,7 @@ class ProductController extends Controller
         $viewData = [];
         $viewData['title'] = 'Products - Online Store';
         $viewData['subtitle'] = 'List of products';
-        $viewData['products'] = Product::all();
+        $viewData['products'] = Product::with('comments')->get();
 
         return view('product.index')->with('viewData', $viewData);
     }
@@ -22,8 +22,8 @@ class ProductController extends Controller
     {
         $viewData = [];
         $product = Product::findOrFail($id);
-        $viewData['title'] = $product['name'].' - Online Store';
-        $viewData['subtitle'] = $product['name'].' - Product information';
+        $viewData['title'] = $product->getName().' - Online Store';
+        $viewData['subtitle'] = $product->getName().' - Product information';
         $viewData['product'] = $product;
 
         return view('product.show')->with('viewData', $viewData);
@@ -37,17 +37,13 @@ class ProductController extends Controller
         return view('product.create')->with('viewData', $viewData);
     }
 
-    public function save(Request $request)
+    public function save(StoreProductRequest $request): View
     {
         $viewData = [];
         $viewData['title'] = 'Save product - Online Store';
         $viewData['subtitle'] = 'Save';
-        $request->validate([
-            'name' => 'required',
-            'price' => ['required', 'numeric', 'gt:0'],
-        ]);
 
-        Product::create($request->only(['name', 'price']));
+        Product::create($request->all());
 
         $message = 'Product created successfully!';
 

@@ -3,7 +3,7 @@
 @section('content') 
 
 <div class="text-center"> 
-  Welcome to the application 
+  {{ $viewData['title'] }}
 </div> 
 
 @endsection 

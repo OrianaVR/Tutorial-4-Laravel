@@ -15,21 +15,21 @@
 
         <h5 class="card-title"> 
 
-          @if ($viewData["product"]["price"] > 80)
+          @if ($viewData["product"]->getPrice() > 80)
             <p style=" color: #ff0000">
-                {{ $viewData["product"]["name"] }}
+                {{ $viewData["product"]->getName() }}
             </p>
           @else
             <p>
-                {{ $viewData["product"]["name"] }}
+                {{ $viewData["product"]->getName() }}
             </p>
           @endif
 
         </h5> 
 
-        <p class="card-text">{{ $viewData["product"]["price"] }}</p>
+        <p class="card-text">{{ $viewData["product"]->getPrice() }}</p>
           
-        @foreach($viewData["product"]->comments as $comment) 
+        @foreach($viewData["product"]->getComments() as $comment) 
           - {{ $comment->getDescription() }}<br /> 
         @endforeach 
       

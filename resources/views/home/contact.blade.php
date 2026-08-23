@@ -8,19 +8,19 @@
     <div class="row"> 
       
       <div class="col-lg-4 ms-auto"> 
-        <p class="lead">Name: Oriana Valoyes</p> 
+        <p class="lead">Name: {{ $viewData['name'] }}</p> 
       </div> 
 
       <div class="col-lg-4 me-auto"> 
-        <p class="lead">Email: info@onlinestore.com</p> 
+        <p class="lead">Email: {{ $viewData['email'] }}</p> 
       </div> 
 
       <div class="col-lg-4 me-auto"> 
-        <p class="lead">Address: Medellín, Colombia</p> 
+        <p class="lead">Address: {{ $viewData['address'] }}</p> 
       </div> 
 
       <div class="col-lg-4 me-auto"> 
-        <p class="lead">Phone: +57 300 123 4567</p> 
+        <p class="lead">Phone: {{ $viewData['phone'] }}</p> 
       </div> 
 
     </div> 
