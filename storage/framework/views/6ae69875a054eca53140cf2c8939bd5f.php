@@ -33,6 +33,17 @@
           <a class="nav-link active" href="<?php echo e(route('home.contact')); ?>">Contact</a>
           <a class="nav-link active" href="<?php echo e(route('product.index')); ?>">Products</a>
           <a class="nav-link active" href="<?php echo e(route('product.create')); ?>">Create Product</a>
+          <div class="vr bg-white mx-2 d-none d-lg-block"></div> 
+          <?php if(auth()->guard()->guest()): ?> 
+          <a class="nav-link active" href="<?php echo e(route('login')); ?>">Login</a> 
+          <a class="nav-link active" href="<?php echo e(route('register')); ?>">Register</a> 
+          <?php else: ?> 
+          <form id="logout" action="<?php echo e(route('logout')); ?>" method="POST"> 
+          <a role="button" class="nav-link active" 
+          onclick="document.getElementById('logout').submit();">Logout</a> 
+          <?php echo csrf_field(); ?> 
+          </form> 
+          <?php endif; ?>
 
         </div> 
       </div> 
